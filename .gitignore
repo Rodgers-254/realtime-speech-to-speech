@@ -1,0 +1,11 @@
+venv/
+sts/
+.env
+pycache/
+*.pyc
+conversations/
+logs/
+.wav
+!Voices/.wav
+.DS_Store
+Thumbs.db
