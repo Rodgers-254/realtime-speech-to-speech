@@ -1,44 +1,102 @@
-Jarvis: Real-Time Speech-to-Speech AI
+🎙️ Jarvis: Real-Time Speech-to-Speech AI
 
 A local, privacy-focused AI voice assistant that listens, thinks, and speaks in real-time. Built with Whisper (Hearing), Ollama/Qwen (Brain), and Coqui XTTS (Voice).
 
+🚀 Features
 
- Features
+Real-Time Pipeline: Threaded architecture ensures low-latency responses.
 
-Real-Time Pipeline: Threaded architecture for low-latency response.
+No Cloud APIs: Runs 100% locally on your PC (Privacy focused).
 
-No Cloud APIs: Runs 100% locally on your GPU.
-
-Voice Cloning: Upload a 3-second audio clip to clone any voice.
+Voice Cloning: Clone any voice using a 3-second audio clip.
 
 Multilingual: Supports English, Spanish, French, German, Italian, and Portuguese.
 
-Installation steps
+Persistent Memory: Automatically saves conversation logs to conversations/.
 
-1. Install Ollama from ollama.com.
+⚡ Quick Start (Copy & Paste)
 
-2. Pull the model:
+1. Prerequisites
 
-   ollama pull qwen2.5:7b
+Install Ollama: Download from ollama.com.
+
+Install FFmpeg: Required for audio processing.
+
+Windows: winget install ffmpeg
+
+Mac: brew install ffmpeg
+
+Linux: sudo apt install ffmpeg
+
+2. Installation & Setup
+
+Copy and paste the commands below into your terminal to set up everything at once.
+
+🪟 Windows (PowerShell)
+
+# 1. Pull the AI Model
+ollama pull qwen2.5:7b # or model of your choice
+
+# 2. Create Virtual Environment
+python -m venv venv
+.\venv\Scripts\activate
+
+# 3. Install Dependencies (This may take a few minutes)
+pip install -r requirements.txt
+
+# Note: If you have an NVIDIA GPU, install PyTorch with CUDA support for speed.
 
 
-3. Install Python dependencies:
+🍎 Mac / 🐧 Linux
 
-   pip install -r requirements.txt
+# 1. Pull the AI Model
+ollama pull qwen2.5:7b
+
+# 2. Create Virtual Environment
+python3 -m venv venv
+source venv/bin/activate
+
+# 3. Install Dependencies
+pip install -r requirements.txt
 
 
-(Note: For GPU support, ensure you have CUDA-enabled PyTorch installed)
+💻 Usage
 
-Usage
+Once installed, you can run Jarvis in two modes. (Make sure your environment is active!)
 
-Run the optimized pipeline:
+Option A: Web Interface (Recommended)
 
-4. python app.py        # runs the model on a user friendly graphical user interface using gradio on a web browser
+Launches a beautiful UI in your browser.
 
-or
+python app.py
 
-5. terminal_app.py      # runs the model in the terminal
 
- Architecture
+Custom Voices: Drag & drop a short .wav file to clone a voice.
 
-User Audio -> Whisper STT -> Ollama (LLM) -> XTTS (TTS) -> Gradio Output
+Default Voice: Place .wav files in the Voices/ folder to have them appear in the dropdown list automatically.
+
+Option B: Terminal Mode
+
+Runs the assistant directly in your command line.
+
+python terminal_app.py
+
+
+🏗️ Architecture
+
+User Audio -> Whisper (STT) -> Ollama (LLM) -> Sentence Queue -> XTTS (TTS) -> Audio Output
+
+
+Whisper (STT): Transcribes your voice to text instantly.
+
+Ollama (LLM): Generates a smart response using Qwen 2.5.
+
+Parallel Pipeline: As soon as the AI finishes the first sentence, it is sent to the voice engine.
+
+Coqui XTTS (TTS): Clones the reference voice and speaks the response in real-time.
+
+📂 Data & Logs
+
+conversations/: All chat history is automatically saved here as JSON files.
+
+Voices/: Drop your favorite voice samples here to use them as defaults.
