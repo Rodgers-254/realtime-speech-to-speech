@@ -29,7 +29,7 @@ OLLAMA_MODEL = "qwen2.5:7b"                                #set model here
 STT_MODEL_ID = "distil-whisper/distil-medium.en"
 SAMPLE_RATE = 16000 
 TTS_SAMPLE_RATE = 24000 
-VOICE_CLONE_PATH = "aud.wav"                               #set your clone voice here
+VOICE_CLONE_PATH = "Voices/female2.wav"                               #set your clone voice here
 CONVO_FOLDER = "conversations"
 os.makedirs(CONVO_FOLDER, exist_ok=True) 
 
