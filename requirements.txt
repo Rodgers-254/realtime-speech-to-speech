@@ -4,6 +4,10 @@ numpy
 gradio
 ollama
 transformers
+accelerate
 TTS
 soundfile
 scipy
+more-itertools
+sounddevice
+colorama
